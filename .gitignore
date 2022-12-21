@@ -1,0 +1,6 @@
+config.json
+#Personal config
+settings.json
+#Personal settings
+__pycache__
+#Unnecessary
