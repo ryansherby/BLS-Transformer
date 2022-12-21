@@ -110,6 +110,13 @@ class BLS:
 
 
     def get_catalog(self,index:list[int]=[None],id:list[str]=[None]):
+        """
+        Extract the series catalog (a list of metadata for each series) from the `json_response` dictionary.
+        
+        Returns:
+        List: A list containing json_response dictionaries.
+        """
+
         if len(self.series_catalog)==0 or self.series_catalog==None:
             raise Exception("None of the requested series contained a catalog.")
         
@@ -198,7 +205,7 @@ class BLS:
 
 
 
-    def convert(self,json_file): #Internal only                                                           
+    def convert(self,json_file) -> dict: #Internal only                                                           
         """                                                                            
         Attempt to convert JSON to dict.
 
