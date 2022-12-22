@@ -4,3 +4,4 @@ settings.json
 #Personal settings
 __pycache__
 #Unnecessary
+bls_transformer.egg-info
