@@ -1,3 +1,26 @@
 [build-system]
 requires = ["setuptools>=61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "bls-transformer"
+version = "1.0.0"
+description = "An easy-to-use library to access Bureau of Labor Statistics data."
+readme = "README.md"
+authors = [{ name = "Ryan Sherby", email = "ryan.m.sherby@gmail.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["BLS", "data", "transformer","json"]
+dependencies = [
+    "requests",
+    'pandas',
+    'numpy'
+]
+requires-python = ">=3.9"
+
+[project.urls]
+Homepage = "https://github.com/ryansherby/BLS-Transformer"
