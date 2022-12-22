@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 
-class BLS:
+class API:
     """
     This class provides an interface to the Bureau of Labor Statistics API.
 
@@ -215,9 +215,4 @@ class BLS:
             tup_json = json.loads(json_file)                                                 
             return tup_json                                                            
         except:                                                                                    
-            return None 
-
-
-if __name__=='__main__':
-    from setup import installDependencies
-    installDependencies(['requests','pandas','numpy'])
+            return None
