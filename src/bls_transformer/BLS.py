@@ -89,6 +89,9 @@ class API:
         Raises:
         Exception: If the data dictionary has not been initialized (i.e. `self.df_dict` is empty).
         """
+
+
+        
         if len(self.df_dict)==0 or self.df_dict==None:
             raise Exception("Please initialize the data dictionary with acceptable raw JSON.")
 
@@ -116,6 +119,8 @@ class API:
         Returns:
         List: A list containing json_response dictionaries.
         """
+
+
 
         if len(self.series_catalog)==0 or self.series_catalog==None:
             raise Exception("None of the requested series contained a catalog.")

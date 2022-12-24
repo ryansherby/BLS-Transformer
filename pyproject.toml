@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bls-transformer"
-version = "1.0.0"
-description = "An easy-to-use library to access Bureau of Labor Statistics data."
+version = "1.0.1"
+description = "An easy-to-use library to access Bureau of Labor Statistics data. See the Wiki."
 readme = "README.md"
 authors = [{ name = "Ryan Sherby", email = "ryan.m.sherby@gmail.com" }]
 license = { file = "LICENSE" }
@@ -24,3 +24,4 @@ requires-python = ">=3.9"
 
 [project.urls]
 Homepage = "https://github.com/ryansherby/BLS-Transformer"
+documentation = "https://github.com/ryansherby/BLS-Transformer/wiki"
