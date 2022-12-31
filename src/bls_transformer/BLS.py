@@ -138,7 +138,7 @@ class API:
        
 
 
-    def get_data_dictionary(self):
+    def transform_JSON(self):
         """
         Create a dictionary of DataFrame objects from the JSON response.
         
