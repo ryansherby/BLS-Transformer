@@ -75,7 +75,7 @@ class API:
                 print(f"Response Message: {elem}")
         
 
-    def get_DataFrame(self,index:list[int]=[None],id:list[str]=[None]):
+    def get_DataFrame(self,index:list[int]=[None],id:list[str]=[None],axis=1):
         """
         Retrieve one or more DataFrame objects from the dictionary by its index or ID.
     
@@ -106,7 +106,7 @@ class API:
                 if (keys[i] in index) or (keys[i] in id):
                     df_list.append(v)
                     id_list.append(keys[1])
-        return pd.concat(df_list,keys=id_list,axis=1)
+        return pd.concat(df_list,keys=id_list,axis=axis)
 
 
     
@@ -138,7 +138,7 @@ class API:
        
 
 
-    def transform_JSON(self):
+    def transform_json(self):
         """
         Create a dictionary of DataFrame objects from the JSON response.
         
