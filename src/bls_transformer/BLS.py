@@ -203,6 +203,16 @@ class API:
 
 
     def set_series_catalog_dict(self,i): #Internal only
+        """
+        Create a JSON object from the catalog metadata for a given series.
+
+        Args:
+        i (int): The index of the series in the series list.
+
+        Returns:
+        dict: A dict containing the JSON object indexed by the series index and series ID.
+        """
+
         try:
             self.series_catalog[(i,self.json_response['Results']['series'][i]['seriesID'])]=self.json_response['Results']['series'][i]['catalog']
         except:
