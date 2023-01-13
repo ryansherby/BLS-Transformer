@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bls-transformer"
-version = "0.1.1"
+version = "0.2.0"
 description = "An easy-to-use library to access Bureau of Labor Statistics data and transform the raw JSON into pandas DataFrames."
 readme = "README.md"
 authors = [{ name = "Ryan Sherby", email = "ryan.m.sherby@gmail.com" }]

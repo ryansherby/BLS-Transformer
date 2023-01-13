@@ -73,49 +73,16 @@ class API:
         for i, elem in enumerate(self.json_response['message']):
             if i < 4:
                 print(f"Response Message: {elem}")
-        
-
-    def get_DataFrame(self,index:list[int]=[None],id:list[str]=[None],axis=1):
-        """
-        Retrieve one or more DataFrame objects from the dictionary by its index or ID.
     
-        Args:
-        index (int): The index of the series in the series list (optional).
-        id (str): The series ID of the series (optional).
-        
-        Returns:
-        pd.DataFrame: A DataFrame object containing the data for the given series.
-        
-        Raises:
-        Exception: If the data dictionary has not been initialized (i.e. `self.df_dict` is empty).
-        """
-
-
-        
-        if len(self.df_dict)==0 or self.df_dict==None:
-            raise Exception("Please initialize the data dictionary with acceptable raw JSON.")
-
-
-
-        df_list=[]
-        id_list=[]
-
-
-        for (keys, v) in self.df_dict.items():
-            for i in range(len(keys)):
-                if (keys[i] in index) or (keys[i] in id):
-                    df_list.append(v)
-                    id_list.append(keys[1])
-        return pd.concat(df_list,keys=id_list,axis=axis)
-
-
-    
-
 
     def get_catalog(self,index:list[int]=[None],id:list[str]=[None]):
         """
         Extract the series catalog (a list of metadata for each series) from the `json_response` dictionary.
         
+        Args:
+        index list(int): The index of the series in the series list (optional).
+        id list(str): The series ID of the series (optional).
+
         Returns:
         List: A list containing json_response dictionaries.
         """
@@ -135,6 +102,66 @@ class API:
                 if (keys[i] in index) or (keys[i] in id):
                     catalog_list.append(v)
         return catalog_list
+
+    def get_DataFrame(self,index:list[int]=[None],id:list[str]=[None],catalog_value:str=None,axis:int=1):
+        """
+        Retrieve one or more DataFrame objects from the dictionary by its index or ID.
+    
+        Args:
+        index list(int): The index of the series in the series list (optional).
+        id list(str): The series ID of the series (optional).
+        catalog_value (str): A catalog value that exists within each DataFrame (optional).
+        axis (int): Axis by which the DataFrame(s) are concatenated on.
+
+        
+        Returns:
+        pd.DataFrame: A DataFrame object containing the data for the given series.
+        
+
+        Raises:
+        Exception: If the data dictionary has not been initialized (i.e. `self.df_dict` is empty).
+        Exception: If the catalog value does not exist within one or more DataFrame(s).
+        """
+
+
+        
+        if len(self.df_dict)==0 or self.df_dict==None:
+            raise Exception("Please initialize the data dictionary with acceptable raw JSON.")
+
+
+        df_list=[]
+        keys=[]
+
+
+        for (k, v) in self.df_dict.items():
+            if (k[0] in index) or (k[1] in id):
+                count=1
+                df_list.append(v)
+                if catalog_value != None:
+                    try:
+                        catalog=self.get_catalog(id=[k[1]])
+
+                        if catalog[0][catalog_value] in keys:
+                            count+=1
+                            key=catalog[0][catalog_value] + f' - {count}'
+                        else:
+                            key=catalog[0][catalog_value]
+                        keys.append(key)
+
+
+                    except KeyError:
+                        raise Exception("Not a valid catalog item for one or more DataFrame(s).")
+
+
+                else:
+                    keys.append(k[1])
+        return pd.concat(df_list,keys=keys,axis=axis)
+
+
+    
+
+
+    
        
 
 
