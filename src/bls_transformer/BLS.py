@@ -17,19 +17,19 @@ class API:
     df_dict (dict): A dictionary containing the data for each seriself.json_response (dict): The raw JSON response from the API.
     """
 
-    def __init__(self,series_id:list,registration_key:str=None,start_year:str='2011',end_year:str='2020',config=None):
+    def __init__(self,series_id:list[str]=[None],registration_key:str=None,start_year:str='2011',end_year:str='2020',config=None):
         converted=self.convert(config)
         if converted:
-            self.config=converted
-            with open(self.config) as json_file:
+            with open(config) as json_file:
+                json_file=json.load(json_file)
                 try:
                     self.series_id=json_file['seriesid']
                 except KeyError:
-                    raise Exception('You need to entire series ID(s).')
+                    raise Exception('You need to include a series ID(s).')
                 try:
                     self.registration_key=json_file['registrationkey']
                 except KeyError:
-                    None
+                    self.registration_key=None
                 try:
                     self.start_year=json_file['startyear']
                 except KeyError:
@@ -254,7 +254,8 @@ class API:
         AKA don't pass garbage to the config.                                                        
         """                                                                            
         try:                                                                           
-            tup_json = json.loads(json_file)                                                 
-            return tup_json                                                            
+            with open(json_file) as test:
+                json.load(test)                                                 
+            return True                                                            
         except:                                                                                    
-            return None
+            return False
